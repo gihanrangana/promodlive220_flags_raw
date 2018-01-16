@@ -1,0 +1,102 @@
+#include "ui/menudef.h"
+
+#include "ui_mp/menustyle.inc"
+#include "ui/choices_setup_common.menu"
+
+#include "ui_mp/dr_common.inc"
+{
+	menuDef
+	{
+		name			"team_marinesopfor"
+		rect			0 0 640 480
+		focuscolor		COLOR_FOCUSED
+		style			WINDOW_STYLE_EMPTY
+		blurWorld		7.0
+		legacySplitScreenScale
+		
+		onOpen
+		{
+			execNow "set menuName Welcome";
+			//UPDATE_PERK1;
+		}
+
+		onClose
+		{
+		}
+
+
+
+
+		onEsc
+		{
+			close self;
+		}
+		
+		#include "ui_mp/dr_menu_frame.inc"
+		
+		// separator
+		itemDef 
+		{
+			rect			319 90 2 210
+
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+
+		itemDef 
+		{
+			rect			80 300 480 1.3
+
+			style			WINDOW_STYLE_SHADER
+			background		"white"
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+		}
+
+		
+		itemDef 
+		{
+			// 570 - 330 = 240
+			rect			330 100 220 180
+			style			WINDOW_STYLE_SHADER
+			background      "kurac"			
+			forecolor		1 1 1 1
+			visible			1
+			decoration
+			border			1
+			bordercolor		1 1 1 1
+		} 
+
+		DR_BUTTON( "0", 100, 110, 180, 20, "^71^0. ^5Auto Assing ", scriptMenuResponse "autoassign";, 1 )
+		DR_BUTTON( "1", 100, 140, 180, 20, "^72^0. ^5Shoutcast", scriptMenuResponse "shoutcast";, 1 )
+		DR_BUTTON( "2", 100, 170, 180, 20, "^73^0. ^5Options", close self; open options_multi;, 1 )
+		DR_BUTTON( "3", 100, 200, 180, 20, "^74^0. ^5Controls", close self; open controls_multi;, 1 )
+		DR_BUTTON( "4", 100, 260, 180, 20, "^75^0. ^5Left Game :(", open popup_endgame;, 1 ) 
+
+		itemDef
+		{
+			name			"motd"
+			visible			1
+			rect			80 360 470 100
+			forecolor		1 1 1 1
+			autowrapped
+			exp				text( dvarString("scr_motd") )
+			textfont		UI_FONT_OBJECTIVE
+			textscale		.24
+			textalignx		8
+			textaligny		16
+			textalign		ITEM_ALIGN_CENTER
+			decoration
+		}
+	}
+}
+
+
+	
+
+
+	
