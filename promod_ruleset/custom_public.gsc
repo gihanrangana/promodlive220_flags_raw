@@ -2,6 +2,29 @@ main()
 {
 	// custom_public ruleset, promod live v2
 	// boolean logic, 0 = false, 1 or higher = true
+		
+	//------------Spawn points------------
+	//x, y , z , degree & x, y , z , degree
+	//do just use the 2nd sting of the map ex: mp_ich_muss_kacken then use ich_spawns
+	setDvar( "crash_spawns",		"49, 1732, 660, 246&-156, 1244, 660, 65");
+	setDvar( "backlot_spawns",		"-804, 108, 420, 239&-1210, -509, 420, 59");
+	setDvar( "strike_spawns",		"108, 398, 410, 89&106, 792, 410, 271");
+	setDvar( "shipment_spawns",		"-3109, 1196, 467, 39&-2844, 1412, 467, 218");
+	setDvar( "crossfire_spawns",	"5100, -3813, 1043, 159&4765, -3678, 1043, 341");
+	setDvar( "citystreets_spawns",	"3695, 343, 20, 270&3695, 2, 10, 90");
+	setDvar( "nuketown_spawns",		"87, 934, 190, 87&99, 1225, 190, 267");
+	setDvar( "killhouse_spawns",	"652, 2601, 790, 270&652, 184, 790, 90");
+	//-------------Flames-----------------
+	//seperate every cor with &
+	//seperate every x, y, z with , (z immer -65 rechnen!!!)
+	setDvar( "crash_flames", 		"-174, 1223, 635&72, 1223, 635&72, 1753, 635&-177, 1752, 635" );
+	setDvar( "backlot_flames", 		"-725, -580, 405&-1280, -580, 405&-1280, 224, 405&-725, 224, 405" );
+	setDvar( "strike_flames", 		"301, 846, 400&300, 337, 400&-80, 339, 400&-79, 843, 400" );
+	setDvar( "shipment_flames",		"-2850, 1204, 402&-3101, 1204, 402&-3100, 1404, 402&-2851, 1405, 402");
+	setDvar( "crossfire_flames", 	"5100, -3965, 1020&4683, -3828, 1020&4778, -3531, 1020&5196, -3668, 1020" );
+	setDvar( "citystreets_flames", 	"-174, 1223, 630&72, 1223, 630&72, 1753, 635&-177, 1752, 635" );//no flames needed here but dvar must be used so i set this to use flames somewhere outside map
+	setDvar( "nuketown_flames", 	"103, 872, 170&-170, 774, 170&-325, 1200, 170&104, 1354, 170&660, 1099, 170&473, 701, 170");
+	setDvar( "killhouse_flames", 	"653, 101, 765&323, 102, 725&327, 2678, 725&651, 2679, 765&982, 2678, 725&979, 101, 725");
 
 	// sd
 	setDvar( "scr_sd_bombtimer", 45 ); // [1->] (seconds)
@@ -70,17 +93,41 @@ main()
 	setDvar( "scr_dm_scorelimit", 0 ); // [0->] (points)
 	setDvar( "scr_dm_timelimit", 10 ); // [0->] (points)
 	setDvar( "scr_dm_waverespawndelay", 0 ); // [0->] (seconds)
+	
+	// kill confirmed
+	setDvar( "scr_kc_numlives", 0 ); // [0->] (amount of lives)
+	setDvar( "scr_kc_playerrespawndelay", 0 ); // [0->] (seconds)
+	setDvar( "scr_kc_roundlimit", 1 ); // [0->] (points)
+	setDvar( "scr_kc_scorelimit", 1000 ); // [0->] (points)
+	setDvar( "scr_kc_roundswitch", 1 ); // [0->] (points)
+	setDvar( "scr_kc_timelimit", 10 ); // [0->] (minutes)
+	setDvar( "scr_kc_waverespawndelay", 0 ); // [0->] (seconds)
 
 	// class limits
-	setDvar( "class_assault_limit", 64 );
-	setDvar( "class_specops_limit", 64 );
-	setDvar( "class_demolitions_limit", 64 );
-	setDvar( "class_sniper_limit", 64 );
-
-	setDvar( "class_assault_allowdrop", 1 );
-	setDvar( "class_specops_allowdrop", 1 );
-	setDvar( "class_demolitions_allowdrop", 0 );
-	setDvar( "class_sniper_allowdrop", 0 );
+	if(level.gametype == "sd")
+	{
+		setDvar( "class_assault_limit", 6 );
+		setDvar( "class_specops_limit", 6 );
+		setDvar( "class_demolitions_limit", 4 );
+		setDvar( "class_sniper_limit", 3 );
+		
+		setDvar( "class_assault_allowdrop", 1 );
+		setDvar( "class_specops_allowdrop", 1 );
+		setDvar( "class_demolitions_allowdrop", 0 );
+		setDvar( "class_sniper_allowdrop", 1 );
+	}
+	else
+	{
+		setDvar( "class_assault_limit", 15 );
+		setDvar( "class_specops_limit", 15 );
+		setDvar( "class_demolitions_limit", 8 );
+		setDvar( "class_sniper_limit", 8 );
+		
+		setDvar( "class_assault_allowdrop", 1 );
+		setDvar( "class_specops_allowdrop", 1 );
+		setDvar( "class_demolitions_allowdrop", 0 );
+		setDvar( "class_sniper_allowdrop", 1 );
+	}
 
 	// assault
 	setDvar( "weap_allow_m16", 1 );
@@ -92,8 +139,8 @@ main()
 	setDvar( "weap_allow_mp44", 1 );
 
 	// assault attachments
-	setDvar( "attach_allow_assault_none", 0 );
-	setDvar( "attach_allow_assault_silencer", 0 );
+	setDvar( "attach_allow_assault_none", 1 );
+	setDvar( "attach_allow_assault_silencer", 1 );
 
 	// smg
 	setDvar( "weap_allow_mp5", 1 );
@@ -101,8 +148,8 @@ main()
 	setDvar( "weap_allow_ak74u", 1 );
 
 	// smg attachments
-	setDvar( "attach_allow_specops_none", 0 );
-	setDvar( "attach_allow_specops_silencer", 0 );
+	setDvar( "attach_allow_specops_none", 1 );
+	setDvar( "attach_allow_specops_silencer", 1 );
 
 	// shotgun
 	setDvar( "weap_allow_m1014", 1 );
@@ -118,6 +165,7 @@ main()
 	setDvar( "weap_allow_usp", 1 );
 	setDvar( "weap_allow_deserteagle", 1 );
 	setDvar( "weap_allow_deserteaglegold", 1 );
+	setDvar( "weap_allow_knife", 1 );
 
 	// pistol attachments
 	setDvar( "attach_allow_pistol_none", 1 );
@@ -161,7 +209,7 @@ main()
 	setDvar( "class_sniper_camo", "camo_none" );
 
 	// team killing
-	setDvar( "scr_team_fftype", 1 ); // [0-3] (disabled, enabled, reflect, shared)
+	setDvar( "scr_team_fftype", 0 ); // [0-3] (disabled, enabled, reflect, shared)
 	setDvar( "scr_team_teamkillpointloss", 5 ); // [0->] (points)
 
 	// player death/respawn settings
@@ -176,7 +224,7 @@ main()
 
 	// logging (not likely to be changed)
 	setDvar( "logfile", 1 );
-	setDvar( "g_log", "games_mp.log" );
+	setDvar( "g_log", "promod_mp.log" );
 	setDvar( "g_logSync", 2 );
 
 	// server issues (not likely to be changed)
@@ -185,7 +233,7 @@ main()
 	setDvar( "g_antilag", 1 );
 	setDvar( "g_smoothClients", 1 );
 	setDvar( "sv_allowDownload", 1 );
-	setDvar( "sv_maxPing", 0 );
+	setDvar( "sv_maxPing", 600 );
 	setDvar( "sv_minPing", 0 );
 	setDvar( "sv_reconnectlimit", 3 );
 	setDvar( "sv_timeout", 240 );
@@ -193,23 +241,27 @@ main()
 	setDvar( "sv_floodprotect", 4 );
 	setDvar( "sv_kickBanTime", 0 );
 	setDvar( "sv_disableClientConsole", 0 );
-	setDvar( "sv_voice", 0 );
+	setDvar( "sv_voice", 1 );
 	setDvar( "sv_clientarchive", 1 );
 	setDvar( "timescale", 1 );
+	
+	//JUMP
+	// setDvar( "jump_slowdownEnable" , 0 );
 
 	// various
 	setDvar( "g_allowVote", 0 ); // [0-1]
 	setDvar( "g_deadChat", 1 ); // [0-1]
-	setDvar( "scr_game_allowkillcam", 0 ); // [0-1]
+	setDvar( "scr_game_allowkillcam", 1 ); // [0-1]
 	setDvar( "scr_game_spectatetype", 1 ); // [0-2] (disabled, team only, all)
 	setDvar( "scr_game_matchstarttime", 10 ); // [0->] (seconds)
-	setDvar( "scr_enable_hiticon", 2 ); // [0-2] (disabled, hit icon on, hit icon on but not through walls)
+	setDvar( "scr_enable_hiticon", 1 ); // [0-2] (disabled, hit icon on, hit icon on but not through walls)
 	setDvar( "scr_enable_scoretext", 1 ); // [0-1] (exp popups, +5 etc)
-	setDvar( "promod_allow_strattime", 0 ); // [0-1] (sd only)
+	setDvar( "promod_allow_strattime", 1 ); // [0-1] (sd only)
 	setDvar( "promod_allow_readyup", 0 ); // [0-1]
-	setDvar( "promod_kniferound", 0 ); // [0-1] (sd only)
+	setDvar( "promod_kniferound", 1 ); // [0-1] (sd only)
 	setDvar( "g_maxDroppedWeapons", 16 ); // [2-32] (maximum number of dropped weapons before recycling)
 	setDvar( "scr_hardcore", 0 ); // [0-1]
+	setDvar( "scr_teambalance", 1 );
 
 	// website
 	setDvar( "promod_hud_website", "www.cybersrv.info" ); // (avoid "//" here)
@@ -227,4 +279,5 @@ main()
 	setDvar( "promod_mc_messagedelay_1", 0 ); // [1->] (overrides default delay in seconds between messages, e.g special messages)
 	setDvar( "promod_mc_messagedelay_2", 0 );
 	setDvar( "promod_mc_messagedelay_3", 0 );
+	
 }
