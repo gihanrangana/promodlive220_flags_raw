@@ -1,5 +1,11 @@
 init()
 {
+	thread players();
+}
+
+
+players()
+{
 	while(1)
 	{
 		level waittill( "connected", player );
@@ -12,37 +18,42 @@ ShowKDRatio()
 	self notify( "new_KDRRatio" );
 	self endon( "new_KDRRatio" );
 	self endon( "disconnect" );
-	level endon("game_ended");
+	self endon( "dead" );
+	self endon("joined_spectators");
+    level endon("game_ended");
 	level endon ("vote started");
 	wait 1;
-	if( IsDefined( self.mc_kdratio ) )      self.mc_kdratio Destroy();
-   
+	if( IsDefined( self.mc_kdratio ) )	self.mc_kdratio Destroy();
+	
 	self.mc_kdratio = NewClientHudElem(self);
 	self.mc_kdratio.x = 110;
-	self.mc_kdratio.y = 10;
+	self.mc_kdratio.y = 38;
 	self.mc_kdratio.horzAlign = "left";
 	self.mc_kdratio.alignX = "left";
 	self.mc_kdratio.fontScale = 1.4;
 	self.mc_kdratio.hidewheninmenu = true;
-	self.mc_kdratio.label = &"^0K^7/^0D ^7Ratio^0: ^7";
+	self.mc_kdratio.label = &"^5K/D Ratio: ^7";
 	self.mc_kdratio FadeOverTime(.5);
 	self.mc_kdratio.alpha = 1;
 	self.mc_kdratio.glowAlpha = 1;
 	self.mc_kdratio.glowColor = (0.3, 0.3, 0.3);
-   
+	
 	for(;;)
 	{
-		ratio = 0;     
+		ratio = 0;	
+		h = self.pers[ "headshots" ];
 		k = self.pers[ "kills" ];
 		d = self.pers[ "deaths" ];
 		if( IsDefined( k ) && IsDefined( d ) )
 		{
 			if( d < 1 )
+			{
 				d = 1;
-
+			}
 			if( k < 1 )
+			{
 				self.mc_kdratio setText("^1-");
-
+			}
 			if( k > 0 )
 			{
 				ratio1 = k / d * 100;
@@ -56,7 +67,7 @@ ShowKDRatio()
 					red = 1;
 				}
 				if(ratio >= 1)
-				{
+					{
 					red = 1.7 - ratio;
 					green = 1;
 				}
@@ -64,15 +75,11 @@ ShowKDRatio()
 				{
 					green = ratio;
 					red = 1;
-				}      
-				if(green >= 1) 
-					green = 1;
-				if(green <= 0 )
-					green = 0;             
-				if( red <= 0 ) 
-					red = 0;
-				if( red >= 1 ) 
-					red = 1;                                       
+				}	
+				if(green >= 1)	green = 1;
+				if(green <= 0 )	green = 0;		
+				if( red <= 0 )	red = 0;
+				if( red >= 1 )	red = 1;					
 				self.mc_kdratio FadeOverTime(1);
 				self.mc_kdratio.color = ( red , green , 0);
 				self.mc_kdratio setValue(ratio);

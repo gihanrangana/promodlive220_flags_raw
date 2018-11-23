@@ -1,6 +1,6 @@
 #include maps\mp\_utility;
 #include maps\mp\gametypes\_hud_util;
-#include cwp\_globallogic_utils;
+#include maps\cwp\_globallogic_utils;
 
 init()
 {
@@ -60,7 +60,7 @@ init()
 	setDvar("ui_timelimit",level.timelimit);
 	if(level.hardcoreMode)setDvar("scr_player_maxhealth",30);
 	else setDvar("scr_player_maxhealth",100);
-	thread cwp\_general::init();
+	thread maps\cwp\_general::init();
 	maps\mp\gametypes\_endroundmusic::init();	
 }
 
@@ -768,7 +768,7 @@ endGame(winner,endReasonText)
 	if ( isOneRound() )
 	{
 		setDvar( "scr_gameended", 1 );
-		cwp\_globallogic_utils::executePostRoundEvents();
+		maps\cwp\_globallogic_utils::executePostRoundEvents();
 	}
 	level.intermission=true;
 	for(i=0;i<level.players.size;i++)
@@ -1960,7 +1960,7 @@ Callback_StartGameType()
 	level.alivePlayers["allies"]=[];
 	level.alivePlayers["axis"]=[];
 	level.activePlayers=[];
-	registerPostRoundEvent( cwp\_finalkillcam::postRoundFinalKillcam );
+	registerPostRoundEvent( maps\cwp\_finalkillcam::postRoundFinalKillcam );
 	makeDvarServerInfo("ui_scorelimit");
 	makeDvarServerInfo("ui_timelimit");
 	waveDelay=getDvarInt("scr_"+level.gameType+"_waverespawndelay");
@@ -2296,6 +2296,9 @@ Callback_PlayerDamage(eInflictor,eAttacker,iDamage,iDFlags,sMeansOfDeath,sWeapon
 		}
 		logPrint("D;"+self getGuid()+";"+self getEntityNumber()+";"+self.pers["team"]+";"+self.name+";"+lpattackGuid+";"+lpattacknum+";"+lpattackerteam+";"+lpattackname+";"+sWeapon+";"+iDamage+";"+sMeansOfDeath+";"+sHitLoc+"\n");
 	}
+	if(!(iDFlags&level.iDFLAGS_PENETRATION) && isDefined(iDamage) && sMeansOfDeath != "MOD_FALLING" )
+	eAttacker thread maps\mp\gametypes\randompopup::randomPopUp(iDamage);
+	
 	self promod\shoutcast::updatePlayer();
 }
 
@@ -2498,7 +2501,7 @@ Callback_PlayerKilled(eInflictor,attacker,iDamage,sMeansOfDeath,sWeapon,vDir,sHi
 	if(isDefined(game["PROMOD_MATCH_MODE"])&&game["PROMOD_MATCH_MODE"]=="match"&&level.gametype=="sd")postDeathDelay=waitForTimeOrNotifies(0.75);
 	else postDeathDelay=waitForTimeOrNotifies(1.75);
 	self notify("death_delay_finished");
-	level thread cwp\_finalkillcam::startFinalKillcam( lpattacknum, self getEntityNumber(), killcamentityindex, sWeapon, self.deathTime, 0, psOffsetTime, attacker, self );
+	level thread maps\cwp\_finalkillcam::startFinalKillcam( lpattacknum, self getEntityNumber(), killcamentityindex, sWeapon, self.deathTime, 0, psOffsetTime, attacker, self );
 	
 	if(!isDefined(game["state"])||game["state"]!="playing")return;
 	respawnTimerStartTime=gettime();

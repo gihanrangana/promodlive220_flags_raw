@@ -264,7 +264,7 @@ main()
 	setDvar( "scr_teambalance", 1 );
 
 	// website
-	setDvar( "promod_hud_website", "www.cybersrv.info" ); // (avoid "//" here)
+	setDvar( "promod_hud_website", "www.cwpclan.com" ); // (avoid "//" here)
 
 	// messagecenter
 	setDvar( "promod_mc_enable", 1 ); // [0-1]

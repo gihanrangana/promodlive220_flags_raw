@@ -17,7 +17,7 @@ postRoundFinalKillcam()
 	song = (1+randomInt(7));
 	level thread playSoundOnAllPlayers( "endround" + song );
 	level thread displaysName_hud( "endround" + song );
-	cwp\_globallogic_utils::resetOutcomeForAllPlayers();
+	maps\cwp\_globallogic_utils::resetOutcomeForAllPlayers();
 	finalKillcamWaiter();	
 }
 
@@ -133,79 +133,79 @@ getS_name(song)
 	{
 
 		case "endround1":
-			return "Grandtheft & Delaney Jane - Eazy Go"; //Change These as your music on the server
+			return "NEFFEX - Unstoppable"; //Change These as your music on the server
 			
 		case "endround2":
-			return "Calvin Harrid - How Deep is your love";
+			return "Flo Rida - Low Low";
 			
 		case "endround3":
-			return "Cartoon - On & On";
+			return "Eminem - Business";
 			
 		case "endround4":
-			return "Radioactive";
+			return "Tech N9ne, 2Pac  Eminem - I Dont Wanna Die";
 			
 		case "endround5": 
-			return "Jonas Blue - Mama ft. William Singe";
+			return "Gangster Music   Rockstar ft. 21 Savage";
 
 		case "endround6":
-			return "Eminem - The Monster ft. Rihanna";
+			return "NEFFEX - Life";
 
 		case "endround7":
-			return "OneRepublic - Counting Stars";
+			return "Bad Meets Evil - Fast Lane ft. Eminem, Royce Da 59";
 
 		case "endround8":
-			return "Unknown";
+			return "Kanye West  Lil Pump - I Love It";
 			
 		case "endround9":
-			return "Krewella - Alive";
+			return "Bebe Rexha - Im A Mess";
 			
 		case "endround10":
-			return "Sia - Cheap Thrills Ft. Sean Paul";
+			return "EMINEM - Till I Collapse";
 			
 		case "endround11":
-			return "Pitbull & J Balvin - Hey Ma ft Camila Cabello";
+			return "Sia - The Greatest ft. Kendrick Lamar";
 			
 		case "endround12":
-			return "Sia - Never Give Up";
+			return "Bomfunk Mc s - Freestyler Stipple";
 			
 		case "endround13": 
-			return "Sia - The Greatest ft. Kendrick Lamar";
+			return "Dynoro  Gigi DAgostino - In My Mind";
 
 		case "endround14":
-			return "ItaloBrothers - Summer Air";
+			return "The Chainsmokers - Side Effects";
 
 		case "endround15":
-			return "Linkin Park - Numb";
+			return "Cash Cash - Hero feat. Christina Perri";
 
 		case "endround16":
-			return "Kanye West - Stronger";
+			return "Dr. Dre & Snoop Dogg - The Next Episode";
 			
 		case "endround17":
-		return "Linkin Park - In The End";
+		return "David Guetta ft Anne-Marie - Dont Leave Me Alone";
 			
 		case "endround18":
-		return "Axwell - Ingrosso - More Than You Knowr";
+		return "David Guetta  Sia - Flames";
 		
 		case "endround19":
-		return "Fort Minor - Remember The Name";
+		return "Vigiland - Friday Night";
 			
 		case "endround20":
-		return "Kelly Clarkson - Stronger";
+		return "3LAU - How You Love Me ft. Bright Light";
 			
 		case "endround21":
-		return "Pitbull & J Balvin - Hey Ma ft Camila Cabello";
+		return "Timmy Trumpet  Lady Bee - Trumpets";
 		
 		case "endround22":
-		return "Macklemore & Ryan Lewis - Thrift Shop";
+		return "The Script - Hall of Fame";
 			
 		case "endround23":
-		return "The Script - Superheroes";
+		return "NEFFEX - Grateful";
 
 		case "endround24":
-		return "Rihanna feat Drake - Work";		
+		return "NEFFEX - Fight Back";		
 						
 		case "endround25":
-			return "Clean Bandit - Rockabye ft. Sean Paul & Anne-Marie";
+			return "The Black Eyed Peas - Lets Get It Started";
 			
 		default:
 			return "";
