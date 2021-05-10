@@ -25,6 +25,6 @@ ZaGGoreC
 + Health script
 -  -Custom Menu
 -  -AntiCamp
--  -Font﻿﻿
+
+Contact email: admin@vg-servers.com
  
-# Our forum: www.cwpclan.com
